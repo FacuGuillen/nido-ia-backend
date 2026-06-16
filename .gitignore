@@ -1,0 +1,11 @@
+# 📦 Ignorar el entorno virtual de Python
+venv/
+.venv/
+env/
+
+# 🗑️ Ignorar la caché de compilación de Python
+__pycache__/
+*.pyc
+
+# 🔑 Ignorar las credenciales locales (Tu API Key de Gemini)
+.env
