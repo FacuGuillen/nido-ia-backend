@@ -8,6 +8,10 @@ import json
 app = Flask(__name__)
 
 
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+if not GEMINI_API_KEY:
+    raise RuntimeError("Falta configurar GEMINI_API_KEY en el entorno.")
+
 client = genai.Client(api_key=GEMINI_API_KEY)
 
 def obtener_recetas_de_postgres():
