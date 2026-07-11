@@ -11,6 +11,8 @@ permissions:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    env:
+      DOCKERHUB_IMAGE: ${{ secrets.DOCKERHUB_USERNAME }}/nido-ia
 
     steps:
       - name: Check out repository
@@ -19,7 +21,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.13"
+          python-version: "3.14"
           cache: pip
 
       - name: Install dependencies
@@ -36,7 +38,7 @@ jobs:
 
       - name: Resolve immutable image reference
         run: |
-          echo "IMAGE=${{ secrets.DOCKERHUB_USERNAME }}/nido-ia" >> "$GITHUB_ENV"
+          echo "IMAGE=${DOCKERHUB_IMAGE}" >> "$GITHUB_ENV"
           echo "TAG=sha-${GITHUB_SHA}" >> "$GITHUB_ENV"
 
       - name: Refuse to overwrite an existing tag
