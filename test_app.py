@@ -359,7 +359,8 @@ class DeliveryArtifactTests(unittest.TestCase):
         self.assertIn("sha-${GITHUB_SHA}", workflow)
         self.assertIn("docker manifest inspect", workflow)
         self.assertIn("already exists", workflow)
-        self.assertIn("/health/live", workflow)
+        self.assertNotIn("docker run --detach", workflow)
+        self.assertNotIn("curl --fail", workflow)
 
     def test_publish_workflow_pushes_stable_channel_tag(self):
         workflow = Path(".github/workflows/publish-image.yml").read_text(

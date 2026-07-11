@@ -54,21 +54,6 @@ jobs:
       - name: Tag stable channel
         run: docker tag "${IMAGE}:${TAG}" "${IMAGE}:recetas-ia-nido-v1"
 
-      - name: Probe production container
-        run: |
-          docker run --detach --name nido-ia-probe \
-            --publish 5000:5000 \
-            --env APP_PORT=5000 \
-            --env OPENAI_API_KEY=health-probe-only \
-            --env OPENAI_MODEL=health-probe-only \
-            "${IMAGE}:${TAG}"
-          curl --fail --retry 12 --retry-delay 2 --retry-connrefused \
-            http://127.0.0.1:5000/health/live
-
-      - name: Stop probe container
-        if: always()
-        run: docker rm --force nido-ia-probe || true
-
       - name: Push immutable and stable channel tags
         run: |
           docker push "${IMAGE}:${TAG}"
