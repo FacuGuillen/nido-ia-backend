@@ -9,3 +9,8 @@ __pycache__/
 
 # 🔑 Ignorar las credenciales locales (Tu API Key de Gemini)
 .env
+
+# SDD local metadata
+.atl/
+.codegraph/
+openspec/

@@ -1,0 +1,16 @@
+.git
+.github/
+.env
+.env.*
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+test*.py
+.pytest_cache/
+.coverage
+htmlcov/
+openspec/
+.atl/
+.codegraph/
